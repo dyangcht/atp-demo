@@ -18,3 +18,4 @@ push-release:
         # working-dir: /root
         ports: 7000/tcp
         # cmd: sh target/bin/start
+# new line
