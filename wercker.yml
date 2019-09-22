@@ -1,5 +1,7 @@
+box:
+  id: oraclelinux:7-slim
+
 build:
-  box: oraclelinux:7-slim
   steps:
     - internal/docker-build:
       dockerfile: Dockerfile
