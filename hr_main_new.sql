@@ -1,13 +1,19 @@
 rem
-rem Header: hr_main.sql 2015/03/19 10:23:26 smtaylor Exp $
 rem
-rem Copyright (c) 2001, 2015, Oracle and/or its affiliates. 
+Header:
+hr_main.sql 2015/03/19 10:23:26 smtaylor Exp $
+rem
+rem Copyright
+(c) 2001, 2015, Oracle and/or its affiliates. 
 rem All rights reserved.
 rem 
 rem Permission is hereby granted, free of charge, to any person obtaining
-rem a copy of this software and associated documentation files (the
+rem a copy of this software and associated documentation files
+(the
 rem "Software"), to deal in the Software without restriction, including
-rem without limitation the rights to use, copy, modify, merge, publish,
+rem without limitation the rights to
+use, copy, modify,
+merge, publish,
 rem distribute, sublicense, and/or sell copies of the Software, and to
 rem permit persons to whom the Software is furnished to do so, subject to
 rem the following conditions:
@@ -85,21 +91,31 @@ REM =======================================================
 DECLARE
 vcount INTEGER :=0;
 BEGIN
-select count(1) into vcount from dba_users where username = 'HR';
-IF vcount != 0 THEN
-EXECUTE IMMEDIATE ('DROP USER hr CASCADE');
-END IF;
+    select count(1)
+    into vcount
+    from dba_users
+    where username = 'HR';
+    IF vcount != 0 THEN
+    EXECUTE IMMEDIATE
+    ('DROP USER hr CASCADE');
+END
+IF;
 END;
 /
 
 REM =======================================================
-REM create user
-REM three separate commands, so the create user command 
-REM will succeed regardless of the existence of the 
+REM
+create user
+REM three separate
+commands, so the
+create user command 
+REM will
+succeed regardless of the existence of the 
 REM DEMO and TEMP tablespaces 
 REM =======================================================
 
-CREATE USER hr IDENTIFIED BY &pass;
+CREATE USER hr
+IDENTIFIED BY &pass;
 
 ALTER USER hr DEFAULT TABLESPACE &tbs
               QUOTA UNLIMITED ON &tbs;
@@ -116,13 +132,20 @@ REM =======================================================
 GRANT execute ON sys.dbms_stats TO hr;
 
 REM =======================================================
-REM create hr schema objects
+REM
+create hr schema objects
 REM =======================================================
 
-ALTER SESSION SET CURRENT_SCHEMA=HR;
+ALTER SESSION
+SET CURRENT_SCHEMA
+=HR;
 
-ALTER SESSION SET NLS_LANGUAGE=American;
-ALTER SESSION SET NLS_TERRITORY=America;
+ALTER SESSION
+SET NLS_LANGUAGE
+=American;
+ALTER SESSION
+SET NLS_TERRITORY
+=America;
 
 --
 -- create tables, sequences and constraint
