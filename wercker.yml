@@ -1,5 +1,6 @@
 box:
-  id: oraclelinux:7-slim
+  # id: oraclelinux:7-slim
+  id: alpine:latest
 
 build:
   steps:
