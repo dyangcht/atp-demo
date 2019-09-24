@@ -6,7 +6,7 @@ build:
   steps:
     - internal/docker-build:
       dockerfile: Dockerfile
-      image-name: nodejs-oci
+      # image-name: nodejs-oci
       no-cache: true
 
 #Push the docker image with our built and tested application to the Oracle Container Registry
