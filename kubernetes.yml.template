@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: nodejs-oci-app
-          image: iad.ocir.io/hktwlab/nodejs-oci:latest
+          # image: iad.ocir.io/hktwlab/nodejs-oci:latest
+          image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
           imagePullPolicy: Always
           ports:
             - name: nodejs-oci-app
