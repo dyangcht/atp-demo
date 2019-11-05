@@ -17,6 +17,7 @@ build:
         tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
         # working-dir: /root
         ports: 7000/tcp
+        env: DB_ADMIN_PWD=321
 
 #Push the docker image with our built and tested application to the Oracle Container Registry
 push-release:
