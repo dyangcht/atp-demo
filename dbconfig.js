@@ -73,14 +73,16 @@
  *****************************************************************************/
 
 module.exports = {
-  user          : process.env.NODE_ORACLEDB_USER || "ADMIN",
+  // user          : process.env.NODE_ORACLEDB_USER || "ADMIN",
+  user          : process.env.DB_ADMIN_USER || "ADMIN",
 
   // Get the password from the environment variable
   // NODE_ORACLEDB_PASSWORD.  The password could also be a hard coded
   // string (not recommended), or it could be prompted for.
   // Alternatively use External Authentication so that no password is
   // needed.
-  password      : process.env.NODE_ORACLEDB_PASSWORD || "Welcome123456",
+  // password      : process.env.NODE_ORACLEDB_PASSWORD || "test123",
+  password      : process.env.DB_ADMIN_PWD || "test123",
 
   // For information on connection strings see:
   // https://oracle.github.io/node-oracledb/doc/api.html#connectionstrings

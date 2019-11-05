@@ -5,9 +5,12 @@ RUN yum install -y oracle-release-el7 && yum-config-manager --enable ol7_oracle_
 RUN curl -sL https://rpm.nodesource.com/setup_10.x | bash - && yum install -y nodejs && rm -rf /var/cache/yum
 ENV NODE_ORACLEDB_PASSWORD=Welcome123456 \
     NODE_ORACLEDB_CONNECTIONSTRING=orcl_low \
-    DB_ADMIN_PWD=123
+    DB_ADMIN_PWD=123 \
+    LD_LIBRARY_PATH="/opt/oracle/instantclient_19_3" \
+    TNS_ADMIN="/db-demo/creds" \
+    WALLET_LOCATION="/db-demo/creds"
 
-COPY wallet/* /usr/lib/oracle/19.3/client64/lib/network/admin/
+# COPY wallet/* /usr/lib/oracle/19.3/client64/lib/network/admin/
 COPY *.js /root/
 WORKDIR /root
 RUN npm install oracledb

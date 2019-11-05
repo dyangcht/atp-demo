@@ -5,13 +5,24 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: atp-demo
+  # name: atp-demo
+  name: nodejs-oci-app
+  labels:
+    app: nodejs-oci-sample
 spec:
+  # replicas: 1
+  # template:
+  #  metadata:
+  #     labels:
+  #       app: atp-demo
   replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-app
   template:
     metadata:
       labels:
-        app: atp-demo
+        app: nodejs-app
     spec:
       # The credential files in the secret are base64 encoded twice and hence they need to be decoded for the programs to use them.
       # This decode-creds initContainer takes care of decoding the files and writing them to a shared volume from which db-app container
@@ -31,10 +42,18 @@ spec:
           mountPath: /creds
       containers:
       # User application that uses credential files to connect to ATP.
-      - name: db-app
+      # - name: db-app
+      - name: nodejs-oci-app
         # image: atp-demo
         # image: iad.ocir.io/hktwlab/nodejs-oci:latest
         image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
+        imagePullPolicy: Always
+        ports: 
+          - name: nodejs-oci-app
+            containerPort: 7000
+            # hostPort: 7000
+            protocol: TCP
+
         env:
         # Pass DB ADMIN user name that is part of the secret created by the binding request.
         - name: DB_ADMIN_USER
@@ -57,9 +76,13 @@ spec:
             secretKeyRef:
               name: atp-user-cred
               key: walletPassword
+        # mount point is match to Dockerfile
         volumeMounts:
         - name: creds
           mountPath: /db-demo/creds
+      # password for OCID access. apply the secret before deployment
+      imagePullSecrets:
+        - name: ocirsecret
       volumes:
       # Volume for mouting the credentials file from Secret created by binding request.
       - name: creds-raw
@@ -68,3 +91,20 @@ spec:
       # Shared Volume in which initContainer will save the decoded credential files and the db-app container reads.
       - name: creds
         emptyDir: {}
+
+---           
+apiVersion: v1
+kind: Service
+metadata: 
+  name: nodejs-svc
+  labels:
+    app: nodejs-app-svc
+spec: 
+  type: LoadBalancer
+  ports:  
+    - port: 80 
+      protocol: TCP
+      targetPort: 7000
+  selector:
+    app: nodejs-app
+
