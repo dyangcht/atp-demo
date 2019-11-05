@@ -59,6 +59,7 @@ deploy-to-cluster:
     - script:
         name: "Visualise Kubernetes config"
         # code: cat kubernetes.yml
+        # change to atp-demo.yaml
         code: cat atp-demo.yaml
 
     - kubectl:
