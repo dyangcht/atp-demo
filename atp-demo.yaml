@@ -32,13 +32,16 @@ spec:
       containers:
       # User application that uses credential files to connect to ATP.
       - name: db-app
-        image: <USER_APPLICATION_IMAGE>
+        # image: atp-demo
+        # image: iad.ocir.io/hktwlab/nodejs-oci:latest
+        image: ${DOCKER_REGISTRY}/${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}
         env:
         # Pass DB ADMIN user name that is part of the secret created by the binding request.
         - name: DB_ADMIN_USER
           valueFrom:
             secretKeyRef:
-              name: atp-demo-binding
+              # name: atp-demo-binding
+              name: ${APPNAME}-binding
               key: user_name
         # Pass DB ADMIN password. The password is managed by the user and hence not part of the secret created by the binding request.
         # In this example we read the password form secret atp-user-cred that is required to be created by the user.  

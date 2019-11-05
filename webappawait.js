@@ -117,7 +117,7 @@ async function handleRequest(request, response) {
 
     const result = await connection.execute(
       `SELECT employee_id, first_name, last_name
-         FROM employees
+         FROM admin.employees
          WHERE department_id = :id`,
       [deptid] // bind variable value
     );
