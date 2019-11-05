@@ -60,7 +60,7 @@ deploy-to-cluster:
         name: "Visualise Kubernetes config"
         # code: cat kubernetes.yml
         # change to atp-demo.yaml
-        code: cat atp-demo.yaml
+        code: cat atp-demo.yml
 
     - kubectl:
         name: deploy to kubernetes
@@ -68,4 +68,4 @@ deploy-to-cluster:
         token: $KUBERNETES_AUTH_TOKEN
         insecure-skip-tls-verify: true
         # command: apply -f kubernetes.yml
-        command: apply -f atp-demo.yaml
+        command: apply -f atp-demo.yml
