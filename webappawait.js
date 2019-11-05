@@ -44,6 +44,7 @@ const http = require('http');
 const oracledb = require('oracledb');
 const dbConfig = require('./dbconfig.js');
 
+// listening port
 const httpPort = 7000;
 
 // Main entry point.  Creates a connection pool and an HTTP server
