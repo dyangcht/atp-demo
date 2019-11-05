@@ -1,5 +1,6 @@
 box:
   # id: oraclelinux:7-slim
+  # delay
   id: alpine:latest
 
 build:
