@@ -55,10 +55,10 @@ async function init() {
     await oracledb.createPool({
       // There is a \n at the end of password. The kubernetes' secret will append the character \n
       // password: dbConfig.password.replace("\n",""),
-      user: dbConfig.user,
+      // user: dbConfig.user,
+      user: 'atp1',
       password: dbConfig.password.password,
       connectString: dbConfig.connectString
-      // user: 'ADMIN',
       // password: 'Welcome123456',
       // connectString: 'orcl_low'
       // edition: 'ORA$BASE', // used for Edition Based Redefintion
