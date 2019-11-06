@@ -80,7 +80,8 @@ async function init() {
       handleRequest(request, response);
     });
     await server.listen(httpPort);
-    console.log("Server running at http://localhost:" + httpPort + "  env: " + process.env.DB_ADMIN_PWD);
+    console.log("Server running at http://localhost:" + httpPort + "  env: " + dbConfig.password);
+    console.log("id: " + dbConfig.user + " sid: " + dbConfig.connectString);
   } catch (err) {
     console.error("init() error: " + err.message);
   }
