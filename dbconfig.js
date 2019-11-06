@@ -82,7 +82,7 @@ module.exports = {
   // Alternatively use External Authentication so that no password is
   // needed.
   // password      : process.env.NODE_ORACLEDB_PASSWORD || "test123",
-  password      : process.env.DB_ADMIN_PWD || "test123",
+  password      : process.env.DB_ADMIN_PWD || "Welcome123456",
 
   // For information on connection strings see:
   // https://oracle.github.io/node-oracledb/doc/api.html#connectionstrings
