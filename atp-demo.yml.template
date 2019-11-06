@@ -69,14 +69,17 @@ spec:
         - name: DB_ADMIN_PWD
           valueFrom:
             secretKeyRef:
-              name: atp-user-cred
+              # name: atp-user-cred
+              name: atp1-secret
               key: password
         # Pass  Wallet password to enable application to read Oracle wallet. The password is managed by the user and hence not part of the secret created by the binding request.
         # In this example we read the password form secret atp-user-cred that is required to be created by the user.  
+        # Don't need this env variable.
         - name: WALLET_PWD
           valueFrom:
             secretKeyRef:
-              name: atp-user-cred
+              # name: atp-user-cred
+              name: atp1-secret
               key: walletPassword
         # mount point is match to Dockerfile
         volumeMounts:
