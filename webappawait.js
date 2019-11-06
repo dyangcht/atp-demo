@@ -57,10 +57,10 @@ async function init() {
       // password: dbConfig.password.replace("\n",""),
       // user: dbConfig.user,
       user: 'atp1',
-      // password: dbConfig.password.password,
-      // connectString: dbConfig.connectString
-      password: 'Oracle123456',
-      connectString: 'orcl_low'
+      password: JSON.parse(dbConfig.password).password,
+      connectString: dbConfig.connectString
+      // password: 'Oracle123456',
+      // connectString: 'orcl_low'
       // edition: 'ORA$BASE', // used for Edition Based Redefintion
       // events: true, // whether to handle Oracle Database FAN and RLB events or support CQN
       // externalAuth: false, // whether connections should be established using External Authentication
@@ -85,7 +85,7 @@ async function init() {
       handleRequest(request, response);
     });
     await server.listen(httpPort);
-    console.log("Server running at http://localhost:" + httpPort + "  env: " + dbConfig.password.password);
+    console.log("Server running at http://localhost:" + httpPort + "  env: " + JSON.parse(dbConfig.password).password);
     console.log("id: " + dbConfig.user + " sid: " + dbConfig.connectString);
   } catch (err) {
     console.error("init() error: " + err.message);
