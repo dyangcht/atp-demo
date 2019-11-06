@@ -82,6 +82,7 @@ module.exports = {
   // Alternatively use External Authentication so that no password is
   // needed.
   // password      : process.env.NODE_ORACLEDB_PASSWORD || "test123",
+  // the data format is JSON but the data type is string
   password      : process.env.DB_ADMIN_PWD || "Welcome123456",
 
   // For information on connection strings see:
