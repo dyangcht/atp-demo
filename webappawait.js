@@ -53,9 +53,12 @@ const httpPort = 7000;
 async function init() {
   try {
     await oracledb.createPool({
-      user: dbConfig.user,
-      password: dbConfig.password,
-      connectString: dbConfig.connectString
+      // user: dbConfig.user,
+      // password: dbConfig.password,
+      // connectString: dbConfig.connectString
+      user: 'ADMIN',
+      password: 'Welcome123456',
+      connectString: 'orcl_low'
       // edition: 'ORA$BASE', // used for Edition Based Redefintion
       // events: true, // whether to handle Oracle Database FAN and RLB events or support CQN
       // externalAuth: false, // whether connections should be established using External Authentication
